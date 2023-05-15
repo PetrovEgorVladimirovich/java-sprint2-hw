@@ -1,13 +1,13 @@
 public class MonthlyReport { // Хранение месячных данных.
-    public String item_name;
-    public boolean is_expense;
+    public String itemName;
+    public boolean isExpense;
     public int quantity;
-    public int sum_of_one;
+    public int sumOfOne;
 
-    public MonthlyReport(String item_name, boolean is_expense, int quantity, int sum_of_one) {
-        this.item_name = item_name;
-        this.is_expense = is_expense;
+    public MonthlyReport(String itemName, boolean isExpense, int quantity, int sumOfOne) {
+        this.itemName = itemName;
+        this.isExpense = isExpense;
         this.quantity = quantity;
-        this.sum_of_one = sum_of_one;
+        this.sumOfOne = sumOfOne;
     }
 }

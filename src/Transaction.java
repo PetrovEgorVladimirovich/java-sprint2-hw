@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 public class Transaction { // Класс для сверки годового и месячных отчётов.
-public ReportEngine reportEngine;
+private final ReportEngine reportEngine;
 
 public Transaction(ReportEngine reportEngine) {
     this.reportEngine = reportEngine;
@@ -19,17 +19,17 @@ public boolean check() { // Поиск несоответствий.
             boolean test = true;
             for (MonthlyReport month : monthlyReports) {
                 int sum;
-                if (month.is_expense) {
-                    sum = month.sum_of_one * month.quantity;
+                if (month.isExpense) {
+                    sum = month.sumOfOne * month.quantity;
                     allSumTrue += sum;
                 } else {
-                    sum = month.sum_of_one * month.quantity;
+                    sum = month.sumOfOne * month.quantity;
                     allSumFalse += sum;
                 }
                     }
             for (YearlyReport yearlyReport : reportEngine.yearlyReports) {
                 if (yearlyReport.month.equals("0" + integer)){
-                    if (yearlyReport.is_expense) {
+                    if (yearlyReport.isExpense) {
                         test = yearlyReport.amount == allSumTrue;
                     } else {
                         test = yearlyReport.amount == allSumFalse;

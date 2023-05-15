@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 public class MonthTotalPerYear { // Класс для расчётов и вывода годовых и месячных данных.
-    public ReportEngine reportEngine;
+    private final ReportEngine reportEngine;
 
     public MonthTotalPerYear(ReportEngine reportEngine) {
         this.reportEngine = reportEngine;
@@ -19,7 +19,7 @@ public class MonthTotalPerYear { // Класс для расчётов и выв
                 int fal = 0;
                 for (YearlyReport yearlyReport : reportEngine.yearlyReports) {
                     if (yearlyReport.month.equals("0" + i)){
-                        if (yearlyReport.is_expense) {
+                        if (yearlyReport.isExpense) {
                             tru = yearlyReport.amount;
                             sumTru += tru;
                         } else {
@@ -35,34 +35,34 @@ public class MonthTotalPerYear { // Класс для расчётов и выв
         }
     }
     public void conclusionMonth(){ // Вывод информации из месячных отчётов.
-        if (reportEngine.monthlyReport.size() == 0) {
+        if (reportEngine.monthlyReport.isEmpty()) {
             System.out.println("Нет данных, нужно считать файлы!");
         } else {
-            for (Integer integer : reportEngine.monthlyReport.keySet()) {
+            for (Integer numberMonth : reportEngine.monthlyReport.keySet()) {
                 int maxTru = 0;
                 int maxFal = 0;
                 String nameTru = null;
                 String nameFal = null;
-                ArrayList<MonthlyReport> monthlyReports = reportEngine.monthlyReport.get(integer);
+                ArrayList<MonthlyReport> monthlyReports = reportEngine.monthlyReport.get(numberMonth);
                 for (MonthlyReport month : monthlyReports) {
-                    int sum = month.quantity * month.sum_of_one;
-                    if (month.is_expense){
+                    int sum = month.quantity * month.sumOfOne;
+                    if (month.isExpense){
                         if (maxTru < sum) {
                             maxTru = sum;
-                            nameTru = month.item_name;
+                            nameTru = month.itemName;
                         }
                     } else {
                         if (maxFal < sum) {
                             maxFal = sum;
-                            nameFal = month.item_name;
+                            nameFal = month.itemName;
                         }
                     }
                 }
-                if (integer == 1) {
+                if (numberMonth == 1) {
                     System.out.println("Январь:");
                     System.out.println("Cамый прибыльный товар: " + nameFal + " - " + maxFal + ".");
                     System.out.println("Cамая большая трата: " + nameTru + " - " + maxTru + ".");
-                } else if (integer == 2) {
+                } else if (numberMonth == 2) {
                     System.out.println("Февраль:");
                     System.out.println("Cамый прибыльный товар: " + nameFal + " - " + maxFal + ".");
                     System.out.println("Cамая большая трата: " + nameTru + " - " + maxTru + ".");
